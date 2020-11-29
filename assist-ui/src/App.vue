@@ -1,6 +1,17 @@
 <template>
+  <menu-bar/>
   <router-view/>
 </template>
+
+<script>
+import MenuBar from './components/o/MenuBar/MenuBar.vue';
+
+export default {
+  components: {
+    MenuBar,
+  },
+};
+</script>
 
 <style>
 #app {
