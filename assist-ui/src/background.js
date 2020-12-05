@@ -1,4 +1,4 @@
-import { app, protocol, BrowserWindow } from 'electron';
+import { app, protocol, BrowserWindow, ipcMain } from 'electron';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 
@@ -21,6 +21,14 @@ async function createWindow() {
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
     },
+  });
+
+  ipcMain.on('minimize', () => {
+    win.minimize();
+  });
+
+  ipcMain.on('close', () => {
+    win.destroy();
   });
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {

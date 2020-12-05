@@ -10,16 +10,16 @@
 </template>
 
 <script>
-const { remote } = require('electron');
+const ipc = require('electron').ipcRenderer;
 
 export default {
   setup() {
     function minimizeWindow() {
-      remote.getCurrentWindow().minimize();
+      ipc.send('minimize');
     }
 
     function closeWindow() {
-      remote.getCurrentWindow().destroy();
+      ipc.send('close');
     }
 
     return {
