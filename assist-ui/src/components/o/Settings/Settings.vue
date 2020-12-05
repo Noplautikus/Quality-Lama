@@ -3,11 +3,59 @@
     <span class="heading">Einstellungen</span>
     <div class="settings-inputs">
       <CustomInput
-        v-for="input in inputs"
-        :key="input.inputclass"
-        :class="input.inputclass"
-        :placeholder="input.placeholder"
-        v-model="input.model"
+        class="companyname"
+        :placeholder="'Firmenname'"
+        v-model="userSettings.companyname"
+      />
+      <CustomInput
+        class="ceo"
+        :placeholder="'Inhaber'"
+        v-model="userSettings.ceo"
+      />
+      <CustomInput
+        class="street"
+        :placeholder="'Straße'"
+        v-model="userSettings.street"
+      />
+      <CustomInput
+        class="houseNumber"
+        :placeholder="'HS-NR.'"
+        v-model="userSettings.houseNumber"
+      />
+      <CustomInput
+        class="postcode"
+        :placeholder="'PLZ'"
+        v-model="userSettings.postcode"
+      />
+      <CustomInput
+        class="location"
+        :placeholder="'Ort'"
+        v-model="userSettings.location"
+      />
+      <CustomInput
+        class="phone"
+        :placeholder="'Tel-NR.'"
+        v-model="userSettings.phone"
+      />
+      <CustomInput
+        class="taxId"
+        :placeholder="'Umsatzsteuer ID'"
+        v-model="userSettings.taxId"
+      />
+      <CustomInput
+        class="iban"
+        :placeholder="'IBAN'"
+        v-model="userSettings.iban"
+      />
+      <CustomInput
+        class="bank"
+        :placeholder="'Bank'"
+        v-model="userSettings.bank"
+      />
+      <CustomInput
+        class="bic"
+        :placeholder="'BIC'"
+        v-model="userSettings.bic"
       />
     </div>
   </div>
@@ -36,66 +84,8 @@ export default {
       bic: null,
     });
 
-    const inputs = ref([
-      {
-        inputclass: 'companyname',
-        placeholder: 'Firmenname',
-        model: userSettings.value.companyname,
-      },
-      {
-        inputclass: 'ceo',
-        placeholder: 'Inhaber',
-        model: userSettings.value.ceo,
-      },
-      {
-        inputclass: 'street',
-        placeholder: 'Straße',
-        model: userSettings.value.street,
-      },
-      {
-        inputclass: 'houseNumber',
-        placeholder: 'HS-NR.',
-        model: userSettings.value.houseNumber,
-      },
-      {
-        inputclass: 'postcode',
-        placeholder: 'PLZ',
-        model: userSettings.value.postcode,
-      },
-      {
-        inputclass: 'location',
-        placeholder: 'Ort',
-        model: userSettings.value.location,
-      },
-      {
-        inputclass: 'phone',
-        placeholder: 'Tel.-NR.',
-        model: userSettings.value.phone,
-      },
-      {
-        inputclass: 'taxId',
-        placeholder: 'UmsatzsteuerID',
-        model: userSettings.value.taxId,
-      },
-      {
-        inputclass: 'iban',
-        placeholder: 'IBAN',
-        model: userSettings.value.iban,
-      },
-      {
-        inputclass: 'bank',
-        placeholder: 'Bank',
-        model: userSettings.value.bank,
-      },
-      {
-        inputclass: 'bic',
-        placeholder: 'BIC',
-        model: userSettings.value.bic,
-      },
-    ]);
-
     return {
-      inputs,
+      userSettings,
     };
   },
 };
