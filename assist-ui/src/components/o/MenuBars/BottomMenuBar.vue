@@ -23,12 +23,10 @@ export default {
   width: 100vw;
   height: 50px;
   background-color: $bg-dark-main;
-  margin: -8px 0 0 -8px;
-  bottom: 0;
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  margin-top: auto;
 }
 
 i {

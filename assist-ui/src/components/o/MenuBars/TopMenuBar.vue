@@ -35,7 +35,6 @@ export default {
   width: 100vw;
   height: 35px;
   background-color: $bg-dark-main;
-  margin: -8px 0 0 -8px;
   -webkit-app-region: drag;
   display: flex;
   align-items: center;
