@@ -26,6 +26,9 @@ export default {
   margin: -8px 0 0 -8px;
   bottom: 0;
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 i {
@@ -34,6 +37,12 @@ i {
 
   &:hover {
     cursor: pointer;
+    color: $color-primary;
+  }
+}
+
+.router-link-active {
+  i {
     color: $color-primary;
   }
 }
