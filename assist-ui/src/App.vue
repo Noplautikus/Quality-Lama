@@ -1,14 +1,15 @@
 <template>
-  <menu-bar/>
+  <top-menu-bar/>
   <router-view/>
 </template>
 
 <script>
 import MenuBar from './components/o/MenuBar/MenuBar.vue';
+import TopMenuBar from './components/o/MenuBars/TopMenuBar.vue';
 
 export default {
   components: {
-    MenuBar,
+    TopMenuBar,
   },
 };
 </script>
