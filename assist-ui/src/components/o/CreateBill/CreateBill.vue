@@ -1,5 +1,5 @@
 <template>
-  CreateBill
+  <span class="heading">Rechnung Erstellen</span>
 </template>
 
 <script>

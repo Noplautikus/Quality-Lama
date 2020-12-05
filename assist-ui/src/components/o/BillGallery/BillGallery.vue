@@ -1,5 +1,5 @@
 <template>
-  BillGallery
+  <span class="heading">Alle Rechnungen</span>
 </template>
 
 <script>

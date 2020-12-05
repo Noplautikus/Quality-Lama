@@ -1,5 +1,5 @@
 <template>
-  Settings
+  <span class="heading">Einstellungen</span>
 </template>
 
 <script>
@@ -8,5 +8,5 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 </style>
