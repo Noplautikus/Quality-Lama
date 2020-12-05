@@ -4,7 +4,7 @@
       <i class="el-icon-document-add"></i>
     </router-link>
     <router-link to="/">
-      <i class="el-icon-document"></i>
+      <i class="el-icon-folder-opened"></i>
     </router-link>
     <router-link to="/Settings">
       <i class="el-icon-setting"></i>
