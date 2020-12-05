@@ -1,5 +1,5 @@
 <template>
-  CreateBill
+  Settings
 </template>
 
 <script>

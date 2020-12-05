@@ -1,5 +1,5 @@
 <template>
-  CreateBill
+  BillGallery
 </template>
 
 <script>
