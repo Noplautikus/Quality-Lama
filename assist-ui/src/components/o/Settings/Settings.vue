@@ -2,61 +2,69 @@
   <div class="settings">
     <span class="heading">Einstellungen</span>
     <div class="settings-inputs">
-      <CustomInput
-        class="companyname"
-        :placeholder="'Firmenname'"
-        v-model="userSettings.companyname"
-      />
-      <CustomInput
-        class="ceo"
-        :placeholder="'Inhaber'"
-        v-model="userSettings.ceo"
-      />
-      <CustomInput
-        class="street"
-        :placeholder="'Straße'"
-        v-model="userSettings.street"
-      />
-      <CustomInput
-        class="houseNumber"
-        :placeholder="'HS-NR.'"
-        v-model="userSettings.houseNumber"
-      />
-      <CustomInput
-        class="postcode"
-        :placeholder="'PLZ'"
-        v-model="userSettings.postcode"
-      />
-      <CustomInput
-        class="location"
-        :placeholder="'Ort'"
-        v-model="userSettings.location"
-      />
-      <CustomInput
-        class="phone"
-        :placeholder="'Tel-NR.'"
-        v-model="userSettings.phone"
-      />
-      <CustomInput
-        class="taxId"
-        :placeholder="'Umsatzsteuer ID'"
-        v-model="userSettings.taxId"
-      />
-      <CustomInput
-        class="iban"
-        :placeholder="'IBAN'"
-        v-model="userSettings.iban"
-      />
-      <CustomInput
-        class="bank"
-        :placeholder="'Bank'"
-        v-model="userSettings.bank"
-      />
-      <CustomInput
-        class="bic"
-        :placeholder="'BIC'"
-        v-model="userSettings.bic"
-      />
+      <div class="left-side-inputs">
+        <CustomInput
+          class="companyname"
+          :placeholder="'Firmenname'"
+          v-model="userSettings.companyname"
+        />
+        <CustomInput
+          class="ceo"
+          :placeholder="'Inhaber'"
+          v-model="userSettings.ceo"
+        />
+        <CustomInput
+          class="street"
+          :placeholder="'Straße'"
+          v-model="userSettings.street"
+        />
+        <CustomInput
+          class="houseNumber"
+          :placeholder="'HS-NR.'"
+          v-model="userSettings.houseNumber"
+        />
+        <CustomInput
+          class="postcode"
+          :placeholder="'PLZ'"
+          v-model="userSettings.postcode"
+        />
+        <CustomInput
+          class="location"
+          :placeholder="'Ort'"
+          v-model="userSettings.location"
+        />
+        <CustomInput
+          class="phone"
+          :placeholder="'Tel-NR.'"
+          v-model="userSettings.phone"
+        />
+      </div>
+      <div class="right-side-inputs">
+        <CustomInput
+          class="taxId"
+          :placeholder="'Umsatzsteuer ID'"
+          v-model="userSettings.taxId"
+        />
+        <CustomInput
+          class="iban"
+          :placeholder="'IBAN'"
+          v-model="userSettings.iban"
+        />
+        <CustomInput
+          class="bank"
+          :placeholder="'Bank'"
+          v-model="userSettings.bank"
+        />
+        <CustomInput
+          class="bic"
+          :placeholder="'BIC'"
+          v-model="userSettings.bic"
+        />
+        <CustomButton
+          :type="'success'"
+          :text="'Speichern'"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -64,10 +72,12 @@
 <script>
 import { ref } from 'vue';
 import CustomInput from '../../a/CustomInput.vue';
+import CustomButton from '../../a/CustomButton.vue';
 
 export default {
   components: {
     CustomInput,
+    CustomButton,
   },
   setup() {
     const userSettings = ref({
@@ -94,7 +104,24 @@ export default {
 <style lang="scss" scoped>
 .settings {
   .settings-inputs {
+    display: flex;
+    justify-content: space-evenly;
 
+    .left-side-inputs {
+      .el-input {
+        margin-bottom: 6px;
+      }
+    }
+
+    .right-side-inputs {
+      .el-input {
+        margin-bottom: 6px;
+      }
+      .el-button {
+        width: 200px;
+        margin-top: 93px;
+      }
+    }
   }
 }
 </style>
