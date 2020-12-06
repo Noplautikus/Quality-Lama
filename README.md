@@ -1,4 +1,4 @@
-# assist-ui
+# quality-lama
 
 ## Project setup
 ```
