@@ -105,7 +105,11 @@ export default {
     return {
       userSettings,
       saveUserSettings,
+      store,
     };
+  },
+  mounted() {
+    this.userSettings = this.store.getters.getUserSettings;
   },
 };
 </script>
