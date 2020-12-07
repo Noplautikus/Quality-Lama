@@ -7,7 +7,7 @@
       <i class="el-icon-folder-opened"></i>
     </router-link>
     <router-link to="/Settings">
-      <i class="el-icon-setting"></i>
+      <i class="el-icon-office-building"></i>
     </router-link>
   </div>
 </template>
