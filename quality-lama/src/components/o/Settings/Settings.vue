@@ -63,6 +63,7 @@
         <CustomButton
           :type="'success'"
           :text="'Speichern'"
+          @click="saveUserSettings"
         />
       </div>
     </div>
@@ -70,6 +71,7 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
 import { ref } from 'vue';
 import CustomInput from '../../a/CustomInput.vue';
 import CustomButton from '../../a/CustomButton.vue';
@@ -80,6 +82,8 @@ export default {
     CustomButton,
   },
   setup() {
+    const store = useStore();
+
     const userSettings = ref({
       companyname: null,
       ceo: null,
@@ -94,8 +98,13 @@ export default {
       bic: null,
     });
 
+    function saveUserSettings() {
+      store.commit('SAVE_USER_SETTINGS', userSettings);
+    }
+
     return {
       userSettings,
+      saveUserSettings,
     };
   },
 };
