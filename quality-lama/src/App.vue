@@ -31,7 +31,7 @@ body {
 
 .content-area {
     height: 83%;
-    overflow: hidden;
+    overflow: auto;
     margin: 0 8px 0 8px;
 }
 
