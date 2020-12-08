@@ -9,3 +9,16 @@
 span {
     display: block;
 }
+
+.el-notification {
+    background-color: $bg-dark-third;
+    width: 250px;
+    border-color: $bg-dark-third;
+    align-items: center;
+
+    .el-notification__title {
+        color: $text-main;
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        font-weight: unset;
+    }
+}

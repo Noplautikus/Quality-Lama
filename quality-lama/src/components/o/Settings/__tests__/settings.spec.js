@@ -1,6 +1,8 @@
+/* eslint-disable import/no-duplicates */
 import { mount } from '@vue/test-utils';
 import store from '@/store';
 import ElementPlus from 'element-plus';
+import { ElNotification } from 'element-plus';
 import Settings from '../Settings.vue';
 
 const wrapper = mount(Settings, {
@@ -40,12 +42,19 @@ describe('settings', () => {
 
     expect(store.commit).toBeCalledTimes(1);
   });
-
   test('should call store with correct mutation', () => {
     const { vm } = wrapper;
 
     vm.saveUserSettings();
 
     expect(store.commit).toHaveBeenCalledWith('SAVE_USER_SETTINGS', expect.anything());
+  });
+  test('should call notification', () => {
+    const { vm } = wrapper;
+    ElNotification.success = jest.fn();
+
+    vm.saveUserSettings();
+
+    expect(ElNotification.success).toBeCalled();
   });
 });
