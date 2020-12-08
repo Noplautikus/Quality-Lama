@@ -1,6 +1,10 @@
-import { app, protocol, BrowserWindow, ipcMain } from 'electron';
+import {
+  app, protocol, BrowserWindow, ipcMain,
+} from 'electron';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS_DEVTOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
+
+const path = require('path');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -21,6 +25,8 @@ async function createWindow() {
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
     },
+    // eslint-disable-next-line no-undef
+    icon: path.join(__static, 'logo.png'),
   });
 
   ipcMain.on('minimize', () => {
