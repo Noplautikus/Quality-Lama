@@ -7,6 +7,9 @@
 </template>
 
 <script>
+import store from '@/store';
+import { USER_SETTINGS_FILE_PATH } from '@/constants/filePaths';
+import { readJsonFromFile, fileExists } from '@/services/fileService';
 import BottomMenuBar from './components/o/MenuBars/BottomMenuBar.vue';
 import TopMenuBar from './components/o/MenuBars/TopMenuBar.vue';
 
@@ -14,6 +17,21 @@ export default {
   components: {
     TopMenuBar,
     BottomMenuBar,
+  },
+  setup() {
+    function restoreStateOutOfBackupFile(pathToFile, storeAction) {
+      if (fileExists(pathToFile)) {
+        const fileData = readJsonFromFile(pathToFile);
+        store.commit(storeAction, fileData);
+      }
+    }
+
+    return {
+      restoreStateOutOfBackupFile,
+    };
+  },
+  mounted() {
+    this.restoreStateOutOfBackupFile(USER_SETTINGS_FILE_PATH, 'SAVE_USER_SETTINGS');
   },
 };
 </script>

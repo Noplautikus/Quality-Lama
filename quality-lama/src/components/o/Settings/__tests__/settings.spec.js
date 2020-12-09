@@ -5,6 +5,8 @@ import ElementPlus from 'element-plus';
 import { ElNotification } from 'element-plus';
 import Settings from '../Settings.vue';
 
+const fs = require('fs');
+
 const wrapper = mount(Settings, {
   global: {
     plugins: [store, ElementPlus],
@@ -13,6 +15,7 @@ const wrapper = mount(Settings, {
 
 describe('settings', () => {
   test('should set userSettings if there are settings saved in store already', () => {
+    fs.writeFileSync = jest.fn();
     const testData = {
       companyname: 'test',
     };
