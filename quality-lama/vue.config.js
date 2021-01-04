@@ -13,6 +13,14 @@ module.exports = {
           oneClick: false,
           deleteAppDataOnUninstall: true,
         },
+        publish: [
+          {
+            provider: 'github',
+            owner: 'Noplautikus',
+            repo: 'Quality-Lama',
+            releaseType: 'draft',
+          },
+        ],
       },
     },
   },

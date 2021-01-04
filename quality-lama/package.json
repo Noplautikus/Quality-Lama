@@ -9,7 +9,7 @@
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
     "tdd": "vue-cli-service test:unit --watch",
-    "build:portable": "electron-builder --win=portable"
+    "release": "vue-cli-service electron:build -p always"
   },
   "main": "background.js",
   "dependencies": {
