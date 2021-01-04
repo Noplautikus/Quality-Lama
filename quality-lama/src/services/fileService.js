@@ -11,7 +11,7 @@ const fileService = {
   },
   fileExists(path) {
     return fs.existsSync(path);
-  }
-}
+  },
+};
 
 export default fileService;
