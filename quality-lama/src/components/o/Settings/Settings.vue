@@ -73,7 +73,7 @@
 <script>
 import { useStore } from 'vuex';
 import { ref } from 'vue';
-import { ElNotification } from 'element-plus';
+import notificationService from '@/services/notificationService';
 import CustomInput from '../../a/CustomInput.vue';
 import CustomButton from '../../a/CustomButton.vue';
 
@@ -102,12 +102,7 @@ export default {
     function saveUserSettings() {
       store.commit('SAVE_USER_SETTINGS', userSettings);
 
-      ElNotification.success({
-        title: 'Erfolgreich gespeichert',
-        position: 'bottom-right',
-        showClose: false,
-        duration: 1500,
-      });
+      notificationService.showSuccessNotification('Erfolgreich gespeichert');
     }
 
     return {
