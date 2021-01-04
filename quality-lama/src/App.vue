@@ -9,7 +9,7 @@
 <script>
 import store from '@/store';
 import { USER_SETTINGS_FILE_PATH } from '@/constants/filePaths';
-import { readJsonFromFile, fileExists } from '@/services/fileService';
+import fileService from '@/services/fileService';
 import BottomMenuBar from './components/o/MenuBars/BottomMenuBar.vue';
 import TopMenuBar from './components/o/MenuBars/TopMenuBar.vue';
 
@@ -20,8 +20,8 @@ export default {
   },
   setup() {
     function restoreStateOutOfBackupFile(pathToFile, storeAction) {
-      if (fileExists(pathToFile)) {
-        const fileData = readJsonFromFile(pathToFile);
+      if (fileService.fileExists(pathToFile)) {
+        const fileData = fileService.readJsonFromFile(pathToFile);
         store.commit(storeAction, fileData);
       }
     }

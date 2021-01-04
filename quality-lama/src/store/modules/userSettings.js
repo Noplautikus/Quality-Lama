@@ -1,5 +1,5 @@
 import { USER_SETTINGS_FILE_PATH } from '@/constants/filePaths';
-import { writeJsonToFile } from '@/services/fileService';
+import fileService from '@/services/fileService';
 
 const userSettings = {
   state: {
@@ -20,7 +20,7 @@ const userSettings = {
   mutations: {
     SAVE_USER_SETTINGS(state, payload) {
       state.settings = payload;
-      writeJsonToFile(USER_SETTINGS_FILE_PATH, state.settings);
+      fileService.writeJsonToFile(USER_SETTINGS_FILE_PATH, state.settings);
     },
   },
   getters: {
