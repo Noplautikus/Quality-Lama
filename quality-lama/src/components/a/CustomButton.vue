@@ -21,6 +21,7 @@ export default {
 .el-button--success {
   background-color: $color-primary;
   border-color: $color-primary;
+  width: 200px;
 
   &:hover {
     background: $color-primary-hover;
