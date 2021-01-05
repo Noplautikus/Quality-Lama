@@ -10,3 +10,5 @@ export default {
 
 <style lang="scss">
 </style>
+
+//zentrierter text: doc.text('The text', doc.internal.pageSize.width/2, 30, null, null, 'center');
