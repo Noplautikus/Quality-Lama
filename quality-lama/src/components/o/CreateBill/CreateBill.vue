@@ -47,6 +47,30 @@
       </div>
     </div>
   </div>
+  <div class="article-information" v-if="page != 0">
+    <CustomInput
+      class="article-name"
+      :placeholder="'Artikel Bezeichnung'"
+      v-model="article.name"
+    />
+    <div class="article-center-input">
+      <CustomInput
+        class="article-quantity"
+        :placeholder="'Anzahl'"
+        v-model="article.quantity"
+      />
+      <CustomButton
+        :type="'success'"
+        :text="'Artikel Hinzufügen'"
+        @click="addArticleToBill()"
+      />
+    </div>
+    <CustomInput
+      class="article-price"
+      :placeholder="'Stückpreis'"
+      v-model="article.pricePerPiece"
+    />
+  </div>
   <div class="arrow arrow-left" v-if="page != 0" @click="decreasePage">
     <ArrowButton :direction="'left'"/>
   </div>
@@ -59,11 +83,13 @@
 import { ref } from 'vue';
 import CustomInput from '../../a/CustomInput.vue';
 import ArrowButton from '../../a/ArrowButton.vue';
+import CustomButton from '../../a/CustomButton.vue';
 
 export default {
   components: {
     CustomInput,
     ArrowButton,
+    CustomButton,
   },
   setup() {
     const page = ref(0);
@@ -98,12 +124,31 @@ export default {
       page.value -= 1;
     }
 
+    function calculatePriceForAll() {
+      return article.value.quantity * article.value.pricePerPiece;
+    }
+
+    function resetArticleObject() {
+      article.value.quantity = null;
+      article.value.name = null;
+      article.value.pricePerPiece = null;
+      article.value.priceForAll = null;
+    }
+
+    function addArticleToBill() {
+      article.value.priceForAll = calculatePriceForAll();
+      bill.value.articles.push({ ...article.value });
+      resetArticleObject();
+    }
+
     return {
       bill,
       article,
       page,
       increasePage,
       decreasePage,
+      calculatePriceForAll,
+      addArticleToBill,
     };
   },
 };
@@ -115,8 +160,19 @@ export default {
   justify-content: space-evenly;
 
   .el-input {
-  margin-bottom: 6px;
+    margin-bottom: 6px;
+  }
 }
+
+.article-information {
+  display: flex;
+  justify-content: space-evenly;
+
+  .article-center-input {
+    .el-button {
+      margin-top: 32px;
+    }
+  }
 }
 
 .arrow {
