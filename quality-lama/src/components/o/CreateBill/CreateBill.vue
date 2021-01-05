@@ -113,6 +113,10 @@ export default {
 .bill-informations {
   display: flex;
   justify-content: space-evenly;
+
+  .el-input {
+  margin-bottom: 6px;
+}
 }
 
 .arrow {
@@ -121,10 +125,10 @@ export default {
 }
 
 .arrow-right {
-  right: 8px;
+  right: 32px;
 }
 
-.el-input {
-  margin-bottom: 6px;
+.arrow-left {
+  left: 32px;
 }
 </style>
