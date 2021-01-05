@@ -72,7 +72,7 @@
 
 <script>
 import { useStore } from 'vuex';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import notificationService from '@/services/notificationService';
 import CustomInput from '../../a/CustomInput.vue';
 import CustomButton from '../../a/CustomButton.vue';
@@ -105,14 +105,15 @@ export default {
       notificationService.showSuccessNotification('Erfolgreich gespeichert');
     }
 
+    onMounted(() => {
+      userSettings.value = store.getters.getUserSettings;
+    });
+
     return {
       userSettings,
       saveUserSettings,
       store,
     };
-  },
-  mounted() {
-    this.userSettings = this.store.getters.getUserSettings;
   },
 };
 </script>
@@ -134,7 +135,6 @@ export default {
         margin-bottom: 6px;
       }
       .el-button {
-        width: 200px;
         margin-top: 93px;
       }
     }
