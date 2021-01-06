@@ -64,4 +64,8 @@ describe('createBill', () => {
     expect(vm.article.pricePerPiece).toBe(null);
     expect(vm.article.priceForAll).toBe(null);
   });
+  test('should format number correct to currency', () => {
+    const result = vm.formatPrice(12.6);
+    expect(result).toBe('12,60');
+  });
 });
