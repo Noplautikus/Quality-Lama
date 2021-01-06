@@ -24,4 +24,8 @@ export default {
     color: $text-main;
   }
 }
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 </style>
