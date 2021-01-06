@@ -47,6 +47,40 @@
       </div>
     </div>
   </div>
+  <div class="article-information" v-if="page != 0">
+    <div class="article-input">
+      <CustomInput
+        class="article-name"
+        :placeholder="'Artikel Bezeichnung'"
+        v-model="article.name"
+      />
+      <div class="article-center-input">
+        <CustomNumberInput
+          class="article-quantity"
+          :placeholder="'Anzahl'"
+          v-model="article.quantity"
+        />
+        <CustomButton
+          :type="'success'"
+          :text="'Artikel Hinzufügen'"
+          @click="addArticleToBill()"
+        />
+      </div>
+      <CustomNumberInput
+        class="article-price"
+        :placeholder="'Stückpreis'"
+        v-model="article.pricePerPiece"
+      />
+    </div>
+    <div class="article-display">
+      <div v-for="(article, index) in bill.articles" v-bind:key="index" class="displayed-article">
+        <span>{{article.quantity}}x</span>
+        <span>{{article.name}}</span>
+        <span>{{formatPrice(article.pricePerPiece)}} €</span>
+        <span>{{formatPrice(article.priceForAll)}} €</span>
+      </div>
+    </div>
+  </div>
   <div class="arrow arrow-left" v-if="page != 0" @click="decreasePage">
     <ArrowButton :direction="'left'"/>
   </div>
@@ -58,12 +92,16 @@
 <script>
 import { ref } from 'vue';
 import CustomInput from '../../a/CustomInput.vue';
+import CustomNumberInput from '../../a/CustomNumberInput.vue';
 import ArrowButton from '../../a/ArrowButton.vue';
+import CustomButton from '../../a/CustomButton.vue';
 
 export default {
   components: {
     CustomInput,
     ArrowButton,
+    CustomButton,
+    CustomNumberInput,
   },
   setup() {
     const page = ref(0);
@@ -98,12 +136,37 @@ export default {
       page.value -= 1;
     }
 
+    function calculatePriceForAll() {
+      return article.value.quantity * article.value.pricePerPiece;
+    }
+
+    function resetArticleObject() {
+      article.value.quantity = null;
+      article.value.name = null;
+      article.value.pricePerPiece = null;
+      article.value.priceForAll = null;
+    }
+
+    function addArticleToBill() {
+      article.value.priceForAll = calculatePriceForAll();
+      bill.value.articles.push({ ...article.value });
+      resetArticleObject();
+    }
+
+    function formatPrice(value) {
+      const val = (value / 1).toFixed(2).replace('.', ',');
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
     return {
       bill,
       article,
       page,
       increasePage,
       decreasePage,
+      calculatePriceForAll,
+      addArticleToBill,
+      formatPrice,
     };
   },
 };
@@ -113,6 +176,44 @@ export default {
 .bill-informations {
   display: flex;
   justify-content: space-evenly;
+
+  .el-input {
+    margin-bottom: 6px;
+  }
+}
+
+.article-information {
+  .article-input {
+    display: flex;
+    justify-content: space-evenly;
+
+    .article-center-input {
+      .el-button {
+        margin-top: 32px;
+      }
+    }
+  }
+  .article-display {
+    width: 70%;
+    height: 164px;
+    margin: 46px auto 0;
+    border: 1px solid $bg-dark-main;
+    border-radius: 8px;
+    background-color: $bg-dark-third;
+    padding: 16px;
+    overflow: auto;
+
+    .displayed-article {
+      display: flex;
+      color: $text-main;
+      font-size: 18px;
+
+      span {
+        margin-right: 24px;
+        margin-bottom: 3px;
+      }
+    }
+  }
 }
 
 .arrow {
@@ -121,10 +222,10 @@ export default {
 }
 
 .arrow-right {
-  right: 8px;
+  right: 32px;
 }
 
-.el-input {
-  margin-bottom: 6px;
+.arrow-left {
+  left: 32px;
 }
 </style>

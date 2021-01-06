@@ -76,4 +76,33 @@ body {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $bg-dark-third;
+    border-radius: 8px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  ::-webkit-scrollbar-track-piece:end {
+    margin-bottom: 1px;
+}
+
+::-webkit-scrollbar-track-piece:start {
+    margin-top: 1px;
+}
 </style>
