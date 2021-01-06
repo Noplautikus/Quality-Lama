@@ -78,6 +78,7 @@
         <span>{{article.name}}</span>
         <span>{{formatPrice(article.pricePerPiece)}} €</span>
         <span>{{formatPrice(article.priceForAll)}} €</span>
+        <span><i class="el-icon-remove-outline" @click="removeArticle(index)"></i></span>
       </div>
     </div>
   </div>
@@ -158,6 +159,10 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 
+    function removeArticle(index) {
+      bill.value.articles.splice(index, 1);
+    }
+
     return {
       bill,
       article,
@@ -167,6 +172,7 @@ export default {
       calculatePriceForAll,
       addArticleToBill,
       formatPrice,
+      removeArticle,
     };
   },
 };
@@ -211,6 +217,15 @@ export default {
       span {
         margin-right: 24px;
         margin-bottom: 3px;
+
+        &:last-of-type {
+          margin-left: auto;
+        }
+      }
+
+      i:hover {
+        cursor: pointer;
+        color: red;
       }
     }
   }

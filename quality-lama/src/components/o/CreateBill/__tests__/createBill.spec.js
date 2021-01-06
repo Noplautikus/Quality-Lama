@@ -68,4 +68,24 @@ describe('createBill', () => {
     const result = vm.formatPrice(12.6);
     expect(result).toBe('12,60');
   });
+  test('should remove specific object in articles array', () => {
+    const article1 = {
+      quantity: '2',
+      name: 'testname',
+      pricePerPiece: '23',
+      priceForAll: '46',
+    };
+    const article2 = {
+      quantity: '22',
+      name: 'testname2',
+      pricePerPiece: '232',
+      priceForAll: '462',
+    };
+    const articles = [article1, article2];
+    vm.bill.articles = [...articles];
+
+    vm.removeArticle(0);
+
+    expect(vm.bill.articles[0]).toEqual(article2);
+  });
 });
