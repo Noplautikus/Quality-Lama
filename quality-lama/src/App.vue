@@ -8,7 +8,7 @@
 
 <script>
 import store from '@/store';
-import { USER_SETTINGS_FILE_PATH } from '@/constants/filePaths';
+import { USER_SETTINGS_FILE_PATH, BILL_FILE_PATH } from '@/constants/filePaths';
 import fileService from '@/services/fileService';
 import BottomMenuBar from './components/o/MenuBars/BottomMenuBar.vue';
 import TopMenuBar from './components/o/MenuBars/TopMenuBar.vue';
@@ -32,6 +32,7 @@ export default {
   },
   mounted() {
     this.restoreStateOutOfBackupFile(USER_SETTINGS_FILE_PATH, 'SAVE_USER_SETTINGS');
+    this.restoreStateOutOfBackupFile(BILL_FILE_PATH, 'OVERRIDE_BILL_STORE');
   },
 };
 </script>
