@@ -14,6 +14,11 @@ const userSettings = {
       state.bills = payload;
     },
   },
+  getters: {
+    getBills(state) {
+      return state.bills;
+    },
+  },
 };
 
 export default userSettings;

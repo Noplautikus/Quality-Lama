@@ -55,4 +55,14 @@ describe('bill', () => {
 
     expect(store.state.bill.bills).toEqual(override);
   });
+  test('should get state', () => {
+    const override = [];
+    store.commit('OVERRIDE_BILL_STORE', override);
+    const bill = 2;
+    store.commit('ADD_AND_SAVE_BILL', bill);
+
+    const state = store.getters.getBills;
+
+    expect(state).toEqual([2]);
+  });
 });
