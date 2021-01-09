@@ -132,4 +132,11 @@ describe('createBill', () => {
 
     expect(ElNotification.success).toBeCalled();
   });
+  test('should reset bill after is was added', () => {
+    vm.bill = { billNumber: '12345', articles: [] };
+
+    vm.addBillToStore();
+
+    expect(vm.bill.billNumber).toBe(null);
+  });
 });

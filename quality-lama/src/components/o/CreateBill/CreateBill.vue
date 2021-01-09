@@ -188,6 +188,20 @@ export default {
       calculateOverallPrice();
       setBillDate();
       store.commit('ADD_AND_SAVE_BILL', bill.value);
+      bill.value = {
+        billNumber: null,
+        date: null,
+        paymentConditions: null,
+        costumer: {
+          name: null,
+          street: null,
+          houseNumber: null,
+          postcode: null,
+          location: null,
+        },
+        articles: [],
+        overallPrice: null,
+      };
 
       notificationService.showSuccessNotification('Rechnung erfolgreich erstellt');
     }
