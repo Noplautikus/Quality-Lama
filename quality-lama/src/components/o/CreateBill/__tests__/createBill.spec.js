@@ -2,7 +2,9 @@
 import { mount } from '@vue/test-utils';
 import store from '@/store';
 import ElementPlus from 'element-plus';
+import { ElNotification } from 'element-plus';
 import CreateBill from '../CreateBill.vue';
+import dateService from '../../../../services/dateService';
 
 const wrapper = mount(CreateBill, {
   global: {
@@ -87,5 +89,47 @@ describe('createBill', () => {
     vm.removeArticle(0);
 
     expect(vm.bill.articles[0]).toEqual(article2);
+  });
+  test('should calculate correct overall price', () => {
+    const article1 = {
+      quantity: '2',
+      name: 'testname',
+      pricePerPiece: '23',
+      priceForAll: 46,
+    };
+    const article2 = {
+      quantity: '22',
+      name: 'testname2',
+      pricePerPiece: '232',
+      priceForAll: 462,
+    };
+    const articles = [article1, article2];
+    vm.bill.articles = [...articles];
+
+    vm.calculateOverallPrice();
+
+    expect(vm.bill.overallPrice).toEqual(article1.priceForAll + article2.priceForAll);
+  });
+  test('should set correct date', () => {
+    const date = '02.04.2000';
+    dateService.getCurrentDate = jest.fn(() => (date));
+
+    vm.setBillDate();
+
+    expect(vm.bill.date).toEqual(date);
+  });
+  test('should call store with correct mutation', () => {
+    store.commit = jest.fn();
+
+    vm.addBillToStore();
+
+    expect(store.commit).toHaveBeenCalledWith('ADD_AND_SAVE_BILL', expect.anything());
+  });
+  test('should call notification', () => {
+    ElNotification.success = jest.fn();
+
+    vm.addBillToStore();
+
+    expect(ElNotification.success).toBeCalled();
   });
 });
