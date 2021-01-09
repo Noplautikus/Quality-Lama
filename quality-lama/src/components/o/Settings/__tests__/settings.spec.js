@@ -35,11 +35,6 @@ describe('settings', () => {
     const { vm } = wrapper;
 
     store.commit = jest.fn();
-    const testSettings = {
-      companyname: 'testname',
-      ceo: 'testceoname',
-    };
-    vm.userSettings = testSettings;
 
     vm.saveUserSettings();
 
