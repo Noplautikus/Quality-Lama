@@ -184,10 +184,16 @@ export default {
       bill.value.date = dateService.getCurrentDate();
     }
 
+    function addCompanyInformationsToBill() {
+      const userSettings = store.getters.getUserSettings;
+      return { ...bill.value, companyInformations: { ...userSettings } };
+    }
+
     function addBillToStore() {
       calculateOverallPrice();
       setBillDate();
-      store.commit('ADD_AND_SAVE_BILL', bill.value);
+      const completeBill = addCompanyInformationsToBill();
+      store.commit('ADD_AND_SAVE_BILL', completeBill);
       bill.value = {
         billNumber: null,
         date: null,
