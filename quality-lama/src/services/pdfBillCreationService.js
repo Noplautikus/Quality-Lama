@@ -67,6 +67,8 @@ const pdfBillCreationService = {
     doc.text('Bank', 10, 252);
     doc.text('BIC', 10, 262);
     doc.text('IBAN', 10, 272);
+    doc.setFontSize(6);
+    doc.text('Die gelieferte Ware bleibt bis zur vollständigen Bezahlung Eigentum des Lieferanten.', 10, 285);
   },
   createProductTable(doc, width) {
     const numberOfRowLines = 23;
@@ -106,7 +108,7 @@ const pdfBillCreationService = {
     }
   },
   addBillInformations(doc, docWidth, bill) {
-    if (bill.billNumber === !null && bill.date === !null) {
+    if (bill.billNumber !== null && bill.date !== null) {
       doc.text(bill.billNumber, docWidth - 50, 30);
       doc.text(bill.date, docWidth - 50, 40);
     }
@@ -119,7 +121,7 @@ const pdfBillCreationService = {
     }
   },
   addPaymentCondition(doc, docWidth, bill) {
-    if (bill.paymentConditions === !null) {
+    if (bill.paymentConditions !== null) {
       doc.text(bill.paymentConditions, docWidth - 65, 70);
     }
   },
@@ -135,7 +137,7 @@ const pdfBillCreationService = {
         doc.text(`${currencyService.formatPrice(article.priceForAll.toString())} ${'€'}`, docWidth - 38, y);
       }
     }
-    if (bill.overallPrice === !null) {
+    if (bill.overallPrice !== null) {
       doc.text(`${currencyService.formatPrice(bill.overallPrice.toString())} ${'€'}`, docWidth - 50, 247);
     }
   },
