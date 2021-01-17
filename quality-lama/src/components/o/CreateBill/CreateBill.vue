@@ -101,6 +101,7 @@ import { useStore } from 'vuex';
 import { ref } from 'vue';
 import notificationService from '@/services/notificationService';
 import dateService from '@/services/dateService';
+import currencyService from '@/services/currencyService';
 import CustomInput from '../../a/CustomInput.vue';
 import CustomNumberInput from '../../a/CustomNumberInput.vue';
 import ArrowButton from '../../a/ArrowButton.vue';
@@ -159,15 +160,14 @@ export default {
       article.value.priceForAll = null;
     }
 
+    function formatPrice(value) {
+      return currencyService.formatPrice(value);
+    }
+
     function addArticleToBill() {
       article.value.priceForAll = calculatePriceForAll();
       bill.value.articles.push({ ...article.value });
       resetArticleObject();
-    }
-
-    function formatPrice(value) {
-      const val = (value / 1).toFixed(2).replace('.', ',');
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 
     function removeArticle(index) {
