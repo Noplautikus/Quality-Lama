@@ -1,4 +1,4 @@
-import { USER_SETTINGS_FILE_PATH } from '@/constants/filePaths';
+import { BILL_FILE_PATH } from '@/constants/filePaths';
 import fileService from '@/services/fileService';
 
 const userSettings = {
@@ -8,10 +8,15 @@ const userSettings = {
   mutations: {
     ADD_AND_SAVE_BILL(state, payload) {
       state.bills.push(payload);
-      fileService.writeJsonToFile(USER_SETTINGS_FILE_PATH, state.settings);
+      fileService.writeJsonToFile(BILL_FILE_PATH, state.bills);
     },
     OVERRIDE_BILL_STORE(state, payload) {
       state.bills = payload;
+    },
+  },
+  getters: {
+    getBills(state) {
+      return [...state.bills].reverse();
     },
   },
 };

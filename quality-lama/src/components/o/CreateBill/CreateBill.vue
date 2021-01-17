@@ -78,8 +78,15 @@
         <span>{{article.name}}</span>
         <span>{{formatPrice(article.pricePerPiece)}} €</span>
         <span>{{formatPrice(article.priceForAll)}} €</span>
+        <span><i class="el-icon-remove-outline" @click="removeArticle(index)"></i></span>
       </div>
     </div>
+    <CustomButton
+      class="bill-save-button"
+      :type="'success'"
+      :text="'Rechnung speichern'"
+      @click="addBillToStore()"
+    />
   </div>
   <div class="arrow arrow-left" v-if="page != 0" @click="decreasePage">
     <ArrowButton :direction="'left'"/>
@@ -90,7 +97,11 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
 import { ref } from 'vue';
+import notificationService from '@/services/notificationService';
+import dateService from '@/services/dateService';
+import currencyService from '@/services/currencyService';
 import CustomInput from '../../a/CustomInput.vue';
 import CustomNumberInput from '../../a/CustomNumberInput.vue';
 import ArrowButton from '../../a/ArrowButton.vue';
@@ -104,6 +115,8 @@ export default {
     CustomNumberInput,
   },
   setup() {
+    const store = useStore();
+
     const page = ref(0);
 
     const bill = ref({
@@ -147,15 +160,56 @@ export default {
       article.value.priceForAll = null;
     }
 
+    function formatPrice(value) {
+      return currencyService.formatPrice(value);
+    }
+
     function addArticleToBill() {
       article.value.priceForAll = calculatePriceForAll();
       bill.value.articles.push({ ...article.value });
       resetArticleObject();
     }
 
-    function formatPrice(value) {
-      const val = (value / 1).toFixed(2).replace('.', ',');
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    function removeArticle(index) {
+      bill.value.articles.splice(index, 1);
+    }
+
+    function calculateOverallPrice() {
+      bill.value.articles.forEach((element) => {
+        bill.value.overallPrice += element.priceForAll;
+      });
+    }
+
+    function setBillDate() {
+      bill.value.date = dateService.getCurrentDate();
+    }
+
+    function addCompanyInformationsToBill() {
+      const userSettings = store.getters.getUserSettings;
+      return { ...bill.value, companyInformations: { ...userSettings } };
+    }
+
+    function addBillToStore() {
+      calculateOverallPrice();
+      setBillDate();
+      const completeBill = addCompanyInformationsToBill();
+      store.commit('ADD_AND_SAVE_BILL', completeBill);
+      bill.value = {
+        billNumber: null,
+        date: null,
+        paymentConditions: null,
+        costumer: {
+          name: null,
+          street: null,
+          houseNumber: null,
+          postcode: null,
+          location: null,
+        },
+        articles: [],
+        overallPrice: null,
+      };
+
+      notificationService.showSuccessNotification('Rechnung erfolgreich erstellt');
     }
 
     return {
@@ -167,6 +221,10 @@ export default {
       calculatePriceForAll,
       addArticleToBill,
       formatPrice,
+      removeArticle,
+      addBillToStore,
+      calculateOverallPrice,
+      setBillDate,
     };
   },
 };
@@ -195,8 +253,8 @@ export default {
   }
   .article-display {
     width: 70%;
-    height: 164px;
-    margin: 46px auto 0;
+    height: 120px;
+    margin: 32px auto 0;
     border: 1px solid $bg-dark-main;
     border-radius: 8px;
     background-color: $bg-dark-third;
@@ -211,8 +269,21 @@ export default {
       span {
         margin-right: 24px;
         margin-bottom: 3px;
+
+        &:last-of-type {
+          margin-left: auto;
+        }
+      }
+
+      i:hover {
+        cursor: pointer;
+        color: red;
       }
     }
+  }
+
+  .bill-save-button {
+    margin-top: 15px;
   }
 }
 

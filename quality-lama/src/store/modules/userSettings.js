@@ -5,6 +5,7 @@ const userSettings = {
   state: {
     settings: {
       companyname: null,
+      companyTitle: '',
       ceo: null,
       street: null,
       houseNumber: null,
@@ -25,7 +26,7 @@ const userSettings = {
   },
   getters: {
     getUserSettings(state) {
-      return state.settings;
+      return { ...state.settings };
     },
   },
 };

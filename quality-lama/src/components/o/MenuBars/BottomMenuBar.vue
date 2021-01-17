@@ -30,7 +30,6 @@ export default {
 }
 
 i {
-  color: $text-main;
   font-size: 35px;
 
   &:hover {

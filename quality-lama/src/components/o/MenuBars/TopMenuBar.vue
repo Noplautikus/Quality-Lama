@@ -46,7 +46,6 @@ export default {
 }
 
 i {
-    color: $text-main;
     font-size: 23px;
     margin-right: 8px;
     -webkit-app-region: no-drag;
