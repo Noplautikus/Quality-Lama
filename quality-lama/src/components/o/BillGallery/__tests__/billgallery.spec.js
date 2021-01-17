@@ -16,6 +16,6 @@ const { vm } = wrapper;
 
 describe('billGallery', () => {
   test('should store billStore to local varibale', () => {
-    expect(vm.bills).toEqual(billStore);
+    expect(vm.bills).toEqual(billStore.reverse());
   });
 });

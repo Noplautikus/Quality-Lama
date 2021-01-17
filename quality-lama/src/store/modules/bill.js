@@ -16,7 +16,7 @@ const userSettings = {
   },
   getters: {
     getBills(state) {
-      return state.bills;
+      return [...state.bills].reverse();
     },
   },
 };
