@@ -9,6 +9,11 @@
           v-model="userSettings.companyname"
         />
         <CustomInput
+          class="company-title"
+          :placeholder="'(Optional) Firmentitel'"
+          v-model="userSettings.companyTitle"
+        />
+        <CustomInput
           class="ceo"
           :placeholder="'Inhaber'"
           v-model="userSettings.ceo"
@@ -33,13 +38,13 @@
           :placeholder="'Ort'"
           v-model="userSettings.location"
         />
+      </div>
+      <div class="right-side-inputs">
         <CustomInput
           class="phone"
           :placeholder="'Tel-NR.'"
           v-model="userSettings.phone"
         />
-      </div>
-      <div class="right-side-inputs">
         <CustomInput
           class="taxId"
           :placeholder="'Umsatzsteuer ID'"
@@ -87,6 +92,7 @@ export default {
 
     const userSettings = ref({
       companyname: null,
+      companyTitle: '',
       ceo: null,
       street: null,
       houseNumber: null,
