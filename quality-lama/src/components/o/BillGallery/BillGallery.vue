@@ -1,7 +1,7 @@
 <template>
   <span class="heading">Alle Rechnungen</span>
   <div class="bills">
-    <div class="bill-display" v-for="(bill, index) in bills" :key="index">
+    <div @click="createPdf(bill)" class="bill-display" v-for="(bill, index) in bills" :key="index">
       <i class="el-icon-document"></i>
       <span>{{bill.billNumber}}</span>
       <span>{{bill.date}}</span>
@@ -13,6 +13,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
+import pdfBillCreationService from '../../../services/pdfBillCreationService';
 
 export default {
   setup() {
@@ -23,12 +24,17 @@ export default {
       bills.value = store.getters.getBills;
     }
 
+    function createPdf(bill) {
+      pdfBillCreationService.showPdf(bill);
+    }
+
     onMounted(() => {
       getBills();
     });
 
     return {
       bills,
+      createPdf,
     };
   },
 };
@@ -66,5 +72,3 @@ export default {
   }
 }
 </style>
-
-//zentrierter text: doc.text('The text', doc.internal.pageSize.width/2, 30, null, null, 'center');
