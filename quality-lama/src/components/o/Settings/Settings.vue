@@ -141,7 +141,7 @@ export default {
         margin-bottom: 6px;
       }
       .el-button {
-        margin-top: 93px;
+        margin-top: 48px;
       }
     }
   }
