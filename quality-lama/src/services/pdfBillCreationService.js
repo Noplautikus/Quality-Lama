@@ -67,6 +67,8 @@ const pdfBillCreationService = {
     doc.text('Bank', 10, 252);
     doc.text('BIC', 10, 262);
     doc.text('IBAN', 10, 272);
+    doc.setFontSize(6);
+    doc.text('Die gelieferte Ware bleibt bis zur vollständigen Bezahlung Eigentum des Lieferanten.', 10, 285);
   },
   createProductTable(doc, width) {
     const numberOfRowLines = 23;
