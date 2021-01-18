@@ -14,6 +14,11 @@
           :placeholder="'Zahlungsbedingung'"
           v-model="bill.paymentConditions"
         />
+        <CustomInput
+          class="order-date"
+          :placeholder="'Datum der Bestellung'"
+          v-model="bill.orderDate"
+        />
       </div>
     </div>
     <div class="right-side">
@@ -131,6 +136,7 @@ export default {
         location: null,
       },
       articles: [],
+      orderDate: null,
       overallPrice: null,
     });
 
