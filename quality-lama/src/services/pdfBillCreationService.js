@@ -38,14 +38,8 @@ const pdfBillCreationService = {
     doc.text('Nr.', width - 70, 30);
     doc.text('Datum', width - 70, 40);
     doc.text('Empfänger', 10, 55);
-    doc.text('Ihre Bestellung / Unsere Lieferung vom', width - 70, 55);
+    doc.text('Ihre Bestellung vom', width - 70, 55);
     doc.text('Zahlungsbedingung', width - 70, 65);
-    doc.setDrawColor('Gray');
-    doc.setLineWidth(0.3);
-    doc.rect(width - 70, 73, 2, 2);
-    doc.text('Steuer-Nr.', width - 66, 75);
-    doc.rect(width - 50, 73, 2, 2);
-    doc.text('Ust-IdNr.', width - 46, 75);
 
     doc.setDrawColor('Black');
     doc.setLineWidth(0.1);
@@ -55,7 +49,6 @@ const pdfBillCreationService = {
 
     doc.line(width - 70, 62, width - 10, 62);
     doc.line(width - 70, 72, width - 10, 72);
-    doc.line(width - 70, 82, width - 10, 82);
 
     this.createProductTable(doc, width);
 
@@ -121,7 +114,8 @@ const pdfBillCreationService = {
     }
   },
   addPaymentCondition(doc, docWidth, bill) {
-    if (bill.paymentConditions !== null) {
+    if (bill.paymentConditions !== null && bill.oderDate !== null) {
+      doc.text(bill.orderDate, docWidth - 65, 60);
       doc.text(bill.paymentConditions, docWidth - 65, 70);
     }
   },
