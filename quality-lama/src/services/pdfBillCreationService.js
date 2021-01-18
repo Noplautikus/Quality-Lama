@@ -84,7 +84,7 @@ const pdfBillCreationService = {
     doc.line(width - 10, 95, width - 10, 249);
 
     doc.setFontSize(7);
-    doc.text('Ohne Steuerausweißs gemäß Kleinunternehmer-Regelung § 19 UstG.', 10, 246.5);
+    doc.text('Ohne Steuerausweis gemäß Kleinunternehmer-Regelung § 19 UstG.', 10, 246.5);
     doc.setFontSize(9);
     doc.text('Rechnungsbetrag (gesamt)', 100, 246.5);
   },
