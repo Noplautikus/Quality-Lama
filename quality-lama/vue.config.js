@@ -9,9 +9,9 @@ module.exports = {
           icon: './public/logo.png',
         },
         nsis: {
-          allowToChangeInstallationDirectory: true,
+          allowToChangeInstallationDirectory: false,
           oneClick: false,
-          deleteAppDataOnUninstall: true,
+          deleteAppDataOnUninstall: false,
         },
         publish: [
           {
